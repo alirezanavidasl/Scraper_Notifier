@@ -4,7 +4,7 @@ from Kamernet_Scraper import Kamernet_Scraper
 import json
 import random,time
 
-with open('Data.json', 'r') as file:
+with open('../Data.json', 'r') as file:
     data_dict = json.load(file)
 
 scraperInstances = []
