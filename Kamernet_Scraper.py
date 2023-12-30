@@ -16,7 +16,7 @@ class Kamernet_Scraper(Basecraper):
                     item_content={}
 
                     item_content["specs"] = item.find('div',class_='MuiCardContent-root ListingCard_cardContent__KkyAH mui-style-1qw96cp').text.strip()
-                    item_content["item_url"] = 'https://kamernet.nl/'+item.get('href')
+                    item_content["item_url"] = 'https://kamernet.nl/'+item.get('href').lower().replace(" ", "-")
 
                     self.check_item(item_content)
 
