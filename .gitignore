@@ -1,0 +1,11 @@
+__pycache__/Basecraper.cpython-312.pyc
+__pycache__/H2S_Scraper.cpython-312.pyc
+__pycache__/Kamernet_Scraper.cpython-312.pyc
+__pycache__/Logger.cpython-312.pyc
+__pycache__/Notifier.cpython-312.pyc
+__pycache__/Pararius_Scraper.cpython-312.pyc
+__pycache__/Saver.cpython-312.pyc
+log/log_H2S.txt
+log/log_Kamernet.txt
+log/log_Pararius.txt
+result/hashlist_Pararius.csv
