@@ -36,16 +36,11 @@ class Funda_Scraper(Basecraper):
 
                     # Split the string into lines and remove empty lines
                     lines = [line.strip() for line in property_info.split('\n') if line.strip()]
-            
+                    specs = ''
                     # Extracted information
-                    address = f"Address: {lines[0]}"
-                    postcode = f"PC: {lines[1]}"
-                    rent = f"Rent: {lines[2]}"
-                    area = f"Area: {lines[3]}"
-                    rooms = f"Rooms: {lines[4]}"
-                    agent = f"Agent: {lines[5]}"
+                    for line in lines:
+                        specs = specs + line + "\n"
 
-                    specs = address+'\n'+postcode+'\n'+rent+'\n'+area+'\n'+rooms+'\n'+agent
                     item_content["specs"] = specs
                     item_content["item_url"] = item.find('a').get('href')
 
