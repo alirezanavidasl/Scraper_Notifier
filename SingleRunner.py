@@ -8,10 +8,9 @@ import random,time
 
 with open('../Data.json', 'r') as file:
     data_dict = json.load(file)
-
 scraperInstances = []
 
-for classData in data_dict["Sites_data"]:
+for classData in data_dict["Sites_data"][-2:]:
         
         scraperObject = getattr(__import__(__name__), f'{classData["Name"]}_Scraper')
         scraperInstance = scraperObject(classData)
@@ -22,8 +21,5 @@ while True:
         scraperInstance.run()
         scraperInstance.logger.log_cleaner()
     time.sleep(10 + random.randint(1, 4))
-
-
-
 
 
