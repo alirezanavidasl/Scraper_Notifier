@@ -32,7 +32,7 @@ class Funda_Scraper(Basecraper):
 
                 for item in items:
                     item_content={}
-                    property_info = items[0].find('div',class_='min-w-0').text
+                    property_info = item.find('div',class_='min-w-0').text
 
                     # Split the string into lines and remove empty lines
                     lines = [line.strip() for line in property_info.split('\n') if line.strip()]

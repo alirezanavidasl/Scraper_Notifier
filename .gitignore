@@ -10,3 +10,5 @@ log/log_Kamernet.txt
 log/log_Pararius.txt
 result/hashlist_Pararius.csv
 __pycache__/Funda_Scraper.cpython-312.pyc
+log/log_Funda.txt
+result/hashlist_Funda.csv
