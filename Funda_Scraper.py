@@ -38,23 +38,14 @@ class Funda_Scraper(Basecraper):
                     lines = [line.strip() for line in property_info.split('\n') if line.strip()]
             
                     # Extracted information
-                    address = lines[0]
-                    postcode = lines[1]
-                    rent = lines[2]
-                    area = lines[3]
-                    rooms = lines[4]
-                    agent = lines[5]
+                    address = f"Address: {lines[0]}"
+                    postcode = f"PC: {lines[1]}"
+                    rent = f"Rent: {lines[2]}"
+                    area = f"Area: {lines[3]}"
+                    rooms = f"Rooms: {lines[4]}"
+                    agent = f"Agent: {lines[5]}"
 
-                    specs = f"""
-                            Address : {address}
-                            PostCode : {postcode}
-                            Rent : {rent}
-                            Area : {area}
-                            Rooms : {rooms}
-                            Agent : {agent}
-
-                            """
-
+                    specs = address+'\n'+postcode+'\n'+rent+'\n'+area+'\n'+rooms+'\n'+agent
                     item_content["specs"] = specs
                     item_content["item_url"] = item.find('a').get('href')
 
