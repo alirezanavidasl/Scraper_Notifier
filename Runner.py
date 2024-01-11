@@ -1,6 +1,8 @@
 from H2S_Scraper import H2S_Scraper
 from Pararius_Scraper import Pararius_Scraper
 from Kamernet_Scraper import Kamernet_Scraper
+from Funda_Scraper import Funda_Scraper
+
 import json
 import random,time
 
