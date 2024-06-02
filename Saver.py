@@ -3,7 +3,7 @@ import csv
 class Saver:
     def __init__(self,hashlist_file_name) -> None:
         self.hashlist_file_path = f'result/hashlist_{hashlist_file_name}.csv'
-
+# TODO: save in db
         try:
             with open(self.hashlist_file_path, "x", newline='') as csvfile:  
                 csv.writer(csvfile)
