@@ -13,9 +13,12 @@ with open('../DataTest.json', 'r') as file:
     data_dict = json.load(file)
 
 file_id_Maryam = "1qIg1daIYEM7KD8GU5DZHPuW-NgHsLED5"
-file_id_Test = "1WJblpFpZRLadFX5HM6JtKX2GJ5zeJgRe"
+# file_id_Test = "1WJblpFpZRLadFX5HM6JtKX2GJ5zeJgRe"
 
-file_ids = [file_id_Maryam,file_id_Test]
+file_ids = [
+    file_id_Maryam
+    # file_id_Test
+    ]
 
 def download_file_from_google_drive(file_id):
     url = f"https://drive.google.com/uc?export=download&id={file_id}"
