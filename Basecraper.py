@@ -11,7 +11,7 @@ class Basecraper(ABC):
         self.send_error = True
         self.notifier = Notifier(classData["Bot_token"])
         self.logger=Logger(classData["Name"])
-        self.saver = Saver(classData["Name"])
+        self.saver = Saver(classData["Bot_token"])
 
     @abstractmethod
     def scrape(self):
