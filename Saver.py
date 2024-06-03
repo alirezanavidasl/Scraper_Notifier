@@ -8,8 +8,7 @@ class Saver:
             with open(self.hashlist_file_path, "x", newline='') as csvfile:  
                 csv.writer(csvfile)
         except FileExistsError:
-            with open(self.hashlist_file_path, "w", newline='') as csvfile:
-                csv.writer(csvfile)
+                pass
         except Exception as e:
             print(f"An error occurred: {e}")
 
