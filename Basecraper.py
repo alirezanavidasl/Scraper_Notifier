@@ -5,13 +5,13 @@ from Notifier import Notifier
 import hashlib
 
 class Basecraper(ABC):
-    def __init__(self, classData):
+    def __init__(self, classData,User):
 
         self.url = classData["URL"]
         self.send_error = True
         self.notifier = Notifier(classData["Bot_token"])
         self.logger=Logger(classData["Name"])
-        self.saver = Saver(classData["Bot_token"])
+        self.saver = Saver(classData["Bot_token"],User)
 
     @abstractmethod
     def scrape(self):
