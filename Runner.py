@@ -16,8 +16,8 @@ file_id_Maryam = "1qIg1daIYEM7KD8GU5DZHPuW-NgHsLED5"
 # file_id_Test = "1WJblpFpZRLadFX5HM6JtKX2GJ5zeJgRe"
 
 file_ids = [
-    file_id_Maryam
-    # file_id_Test
+    {"User":"Maryam","File":file_id_Maryam}
+    # {"User":"Test","File":file_id_Test}
     ]
 
 def download_file_from_google_drive(file_id):
@@ -34,7 +34,8 @@ def combine_json_from_file_ids(file_ids):
     combined_json = []
     for file_id in file_ids:
         try:
-            json_data = read_json_from_google_drive(file_id)
+            json_data = read_json_from_google_drive(file_id["File"])
+            json_data["User"] = file_id["User"]
             combined_json.append(json_data)
         except requests.exceptions.RequestException as e:
             print(f"Error downloading the file with ID {file_id}: {e}")
@@ -53,7 +54,7 @@ while True:
         for classData in data_dict["Sites_data"]:
                 
                 scraperObject = getattr(__import__(__name__), f'{classData["Name"]}_Scraper')
-                scraperInstance = scraperObject(classData)
+                scraperInstance = scraperObject(classData,data_dict["User"])
                 scraperInstances.append(scraperInstance)
     for scraperInstance in scraperInstances:
         scraperInstance.run()
