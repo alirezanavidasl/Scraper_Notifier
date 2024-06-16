@@ -1,12 +1,17 @@
 import requests
-import time
+import sqlite3
 from datetime import datetime
 
 class Notifier:
 
     def __init__(self, token):
         self.bot_token = token
-        self.chat_id = self.get_chat_id_with_retry(token)
+        self.db_path = 'result/hashlist.db'
+        self.chat_id = self.get_chat_id_from_db(token,self.db_path)
+        if not self.chat_id:
+            self.chat_id = self.get_chat_id(token)
+            if self.chat_id:
+                self.save_chat_id_to_db(token, self.chat_id,self.db_path)
 
     def send_message(self, message):
         try:
@@ -17,22 +22,7 @@ class Notifier:
                 errorFile.write(f"{datetime.now()} - Failed to send notification: {e}\n")
             print(f"Failed to send notification: {e}")
 
-    def get_chat_id_with_retry(self, BOT_TOKEN, retries=5, delay=5):
-        for attempt in range(retries):
-            try:
-                chat_id = self.get_chat_id(BOT_TOKEN)
-                if chat_id is not None:
-                    return chat_id
-                else:
-                    raise ValueError("Chat ID not found in the response.")
-            except Exception as e:
-                if attempt < retries - 1:
-                    time.sleep(delay)
-                else:
-                    with open('log/error.txt', 'a') as errorFile:
-                        errorFile.write(f"{datetime.now()} - Failed to get chat ID after {retries} attempts: {e}\n")
-                    print(f"Failed to get chat ID after {retries} attempts: {e}")
-                    return None
+
 
     @staticmethod
     def get_chat_id(BOT_TOKEN):
@@ -54,3 +44,38 @@ class Notifier:
                 errorFile.write(f"{datetime.now()} - Error in get_chat_id: {e}\n")
             print(f"Error in get_chat_id: {e}")
         return None
+    
+    @staticmethod
+    def save_chat_id_to_db(bot_token, chat_id,db_path):
+        try:
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS entities (
+                    bot_token TEXT,
+                    chat_id TEXT
+                )
+            ''')
+            cursor.execute('INSERT INTO entities (bot_token, chat_id) VALUES (?, ?)', (bot_token, chat_id))
+            conn.commit()
+            conn.close()
+        except Exception as e:
+            with open('log/error.txt', 'a') as errorFile:
+                errorFile.write(f"{datetime.now()} - Failed to save chat_id to database: {e}\n")
+            print(f"Failed to save chat_id to database: {e}")
+    @staticmethod
+    def get_chat_id_from_db(bot_token,db_path):
+        try:
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            cursor.execute('SELECT chat_id FROM entities WHERE bot_token = ?', (bot_token,))
+            result = cursor.fetchone()
+            conn.close()
+            if result:
+                return result[0]
+            return None
+        except Exception as e:
+            with open('log/error.txt', 'a') as errorFile:
+                errorFile.write(f"{datetime.now()} - Failed to retrieve chat_id from database: {e}\n")
+            print(f"Failed to retrieve chat_id from database: {e}")
+            return None
