@@ -17,8 +17,8 @@ file_id_Elham = "https://drive.google.com/file/d/1B4YUnlajxKjjxGI49Nmw_NY8YybwyG
 
 URLs = [
     # {"User":"Maryam","URL":f"https://drive.google.com/uc?export=download&id={file_id_Maryam}"},
-    {"User":"Test","URL":f"https://drive.google.com/uc?export=download&id={file_id_Test}"},
-    {"User":"Elham","URL":file_id_Elham}
+    {"User":"Test","URL":f"https://drive.google.com/uc?export=download&id={file_id_Test}"}
+    # {"User":"Elham","URL":file_id_Elham}
     ]
 
 def download_file_from_google_drive(url):
