@@ -3,7 +3,7 @@ from Logger import Logger
 from Saver import Saver
 from Notifier import Notifier
 import hashlib
-
+from datetime import datetime
 class Basecraper(ABC):
     def __init__(self, classData,User):
 
@@ -42,4 +42,6 @@ class Basecraper(ABC):
         self.logger.log_result(False, e)
         if self.send_error:
             self.notifier.send_message(f'There is an error: {str(e)}')
+            with open('log/error.txt', 'a') as errorFile:
+                errorFile.write(f"{datetime.now()} - Failed to send notification: {e}\n")
             self.send_error = False
