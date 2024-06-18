@@ -7,7 +7,7 @@ class Pararius_Scraper(Basecraper):
 
     def scrape(self):
         try:
-            response = requests.get(self.url)
+            response = requests.get(self.url,verify=False)
 
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, 'html.parser')

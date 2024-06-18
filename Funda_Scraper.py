@@ -24,7 +24,7 @@ class Funda_Scraper(Basecraper):
                     }
 
         try:
-            response = requests.get(self.url,headers=headers)
+            response = requests.get(self.url,headers=headers,verify=False)
 
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, 'lxml')
