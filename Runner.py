@@ -2,6 +2,7 @@ from H2S_Scraper import H2S_Scraper
 from Pararius_Scraper import Pararius_Scraper
 from Kamernet_Scraper import Kamernet_Scraper
 from Funda_Scraper import Funda_Scraper
+import argparse
 
 import json, requests
 import random,time
@@ -46,6 +47,14 @@ def combine_json_from_file_ids(URLs):
 
 scraperInstances = []
 
+ # Create the parser
+parser = argparse.ArgumentParser(description='Fetch data from a URL with a specified timeout.')
+
+# Add arguments
+parser.add_argument('--wait', type=int, default=10, help='waiting for the request in seconds')
+
+# Parse the arguments
+args = parser.parse_args()
 
 while True:
     
@@ -60,7 +69,7 @@ while True:
     for scraperInstance in scraperInstances:
         scraperInstance.run()
         scraperInstance.logger.log_cleaner()
-    time.sleep(10 + random.randint(1, 4))
+    time.sleep(args.wait + random.randint(1, 4))
 
 
 
