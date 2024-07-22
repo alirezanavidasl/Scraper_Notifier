@@ -15,10 +15,12 @@ import random,time
 file_id_Maryam = "1qIg1daIYEM7KD8GU5DZHPuW-NgHsLED5"
 file_id_Test = "1WJblpFpZRLadFX5HM6JtKX2GJ5zeJgRe"
 file_id_Elham = "https://drive.google.com/file/d/1B4YUnlajxKjjxGI49Nmw_NY8YybwyGvc/view?usp=drive_link"
+file_id_Marzie = "1AIFbbBJlPx80gnuY0qZWPvHWNEdTQOjb"
 
 URLs = [
     {"User":"Maryam","URL":f"https://drive.google.com/uc?export=download&id={file_id_Maryam}"},
-    {"User":"Test","URL":f"https://drive.google.com/uc?export=download&id={file_id_Test}"}
+    {"User":"Test","URL":f"https://drive.google.com/uc?export=download&id={file_id_Test}"},
+    {"User":"Marzie","URL":f"https://drive.google.com/uc?export=download&id={file_id_Marzie}"}
     # {"User":"Elham","URL":file_id_Elham}
     ]
 
